@@ -1047,6 +1047,8 @@ class StepRequirement:
         """Check if this requirement has exceeded its timeout."""
         if self.timeout_at is None:
             return False
+        if self.confirmed is not None:
+            return False
         return datetime.now(timezone.utc) >= self.timeout_at
 
     @property
